@@ -1,0 +1,24 @@
+services:
+
+  restaurant-demo:
+    container_name: restaurant-demo
+    build: .
+    volumes:
+      - ./restaurant-demo:/var/www/html
+    ports:
+      - :80
+  
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: restaurant_demo
+    ports:
+    - 8180:8080
+  
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - :80
+    environment:
+      - PMA_ARBITRARY=1
